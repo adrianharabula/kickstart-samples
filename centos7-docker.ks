@@ -43,7 +43,7 @@ repo --name=elrepo-kernel --baseurl=http://elrepo.org/linux/kernel/el$releasever
 ## Docker repo
 ## repo --name=docker --baseurl=https://download.docker.com/linux/centos/$releasever/$basearch/stable/
 
-services --enabled docker
+services --enabled=docker
 
 %packages --excludedocs --retries=1 --timeout=10 --ignoremissing
 @Core
