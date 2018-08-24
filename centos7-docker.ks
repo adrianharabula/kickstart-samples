@@ -40,11 +40,6 @@ repo --name=centos --mirrorlist=http://mirrorlist.centos.org/?release=$releaseve
 repo --name=centos-updates --mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates
 repo --name=elrepo-kernel --baseurl=http://elrepo.org/linux/kernel/el$releasever/$basearch/
 
-## Docker repo
-## repo --name=docker --baseurl=https://download.docker.com/linux/centos/$releasever/$basearch/stable/
-
-services --enabled=docker
-
 %packages --excludedocs --retries=1 --timeout=10 --ignoremissing
 @Core
 -kernel
@@ -56,12 +51,14 @@ kernel-ml
 kernel-ml-devel
 kernel-ml-tools
 kernel-ml-tools-libs
-kernel-ml-headers
+kernel-ml-headersdocke
 elrepo-release
 %end
 
 %post --log=/root/ks-post.log
-## Install Docker script
+## Install stable Docker
 curl -fsSL get.docker.com -o get-docker.sh
 sh get-docker.sh
+## Enable docker service at startup
+systemctl enable docker
 %end
