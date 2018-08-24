@@ -33,15 +33,15 @@ clearpart --all --initlabel
 # Disk partitioning information
 part / --asprimary --fstype="ext4" --grow --size=1
 
-# Even more customization
+# Set root password
 rootpw toor
 
-## CentOS repos
-#  Install packages from latest versions available
+# CentOS repos
+# Install packages from latest versions available, so no yum update after install is required
 repo --name=centos --mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os
 repo --name=centos-updates --mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates
 
-## Add elrepo-kernel for CentOS
+# Add elrepo-kernel for CentOS
 repo --name=elrepo-kernel --baseurl=http://elrepo.org/linux/kernel/el$releasever/$basearch/
 
 %packages --excludedocs --retries=1 --timeout=10 --ignoremissing
