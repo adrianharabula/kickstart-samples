@@ -21,6 +21,7 @@ selinux --disabled
 # Do not configure the X Window System
 skipx
 
+# Perform the installation in a completely non-interactive command line mode
 cmdline
 
 # System bootloader configuration
@@ -36,8 +37,11 @@ part / --asprimary --fstype="ext4" --grow --size=1
 rootpw toor
 
 ## CentOS repos
+#  Install packages from latest versions available
 repo --name=centos --mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os
 repo --name=centos-updates --mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates
+
+## Add elrepo-kernel for CentOS
 repo --name=elrepo-kernel --baseurl=http://elrepo.org/linux/kernel/el$releasever/$basearch/
 
 %packages --excludedocs --retries=1 --timeout=10 --ignoremissing
@@ -51,14 +55,16 @@ kernel-ml
 kernel-ml-devel
 kernel-ml-tools
 kernel-ml-tools-libs
-kernel-ml-headersdocke
+# TODO: fix kernel-ml-headers not found
+kernel-ml-headers
+# Persist elrepo-kernel after reboot
 elrepo-release
 %end
 
 %post --log=/root/ks-post.log
-## Install stable Docker
+# Install stable Docker
 curl -fsSL get.docker.com -o get-docker.sh
 sh get-docker.sh
-## Enable docker service at startup
+# Enable docker service at startup
 systemctl enable docker
 %end
