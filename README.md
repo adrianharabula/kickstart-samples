@@ -2,7 +2,7 @@
 Sample kickstart config files to automate CentOS/Fedora installs.
 
 It includes:
-  * CentOS 7 with elrepo-kernel and latest stable docker  
+  * [centos7-docker.ks](https://github.com/adrianharabula/kickstart-samples/blob/master/centos7-docker.ks) - CentOS 7 with elrepo-kernel and latest stable docker  
     This will install a production ready docker environment for your wishes.
 
 # Instructions (under contruction)
