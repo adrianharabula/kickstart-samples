@@ -1,3 +1,5 @@
+#CentOS 7 with elrepo-kernel and latest stable docker
+#This will install a production ready docker environment for your wishes
 #platform=x86, AMD64, or Intel EM64T
 #version=DEVEL
 # Keyboard layouts
@@ -44,7 +46,7 @@ repo --name=centos-updates --mirrorlist=http://mirrorlist.centos.org/?release=$r
 # Add elrepo-kernel for CentOS
 repo --name=elrepo-kernel --baseurl=http://elrepo.org/linux/kernel/el$releasever/$basearch/
 
-%packages --excludedocs --retries=1 --timeout=10 --ignoremissing
+%packages --excludedocs --retries=1 --timeout=10
 @Core
 -kernel
 -kernel-devel
@@ -56,7 +58,7 @@ kernel-ml-devel
 kernel-ml-tools
 kernel-ml-tools-libs
 # TODO: fix kernel-ml-headers not found
-kernel-ml-headers
+#kernel-ml-headers
 # Persist elrepo-kernel after reboot
 elrepo-release
 %end
