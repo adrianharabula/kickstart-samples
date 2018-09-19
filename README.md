@@ -7,17 +7,17 @@ It includes:
 
 # Instructions (under contruction)
 
-## 1. Host kickstart file:
+## 1. Make the Kickstart file available on a web server
 
-### HTTP server With python
+The absolutely fastest way to get a simple web server up and running using Python, for development purposes:
 ```
 python -m SimpleHTTPServer 8000
 ```
-## 2. Boot any CentOS/Fedora image
+## 2. Boot minimal CentOS image
 
-Add the following kernel parameter:
+Then just add the following kernel parameter use the kickstart file served over the web server above:
 ```
-ks=http://localhost:8000/centos7-docker.ks
+ks=http://machine-hostname-or-ip:8000/centos7-docker.ks
 ```
 
-This will start a fresh install from the kickstart file.
+This will start a fresh install from the kickstart file. Attached hdd on the machine will be erased.
